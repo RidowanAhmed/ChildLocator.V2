@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "307481661245-kfrsnluu9ldu012me07eb7tit0t6nfsb.apps.googleusercontent.com",
+          "client_id": "307481661245-ams9l8k3jnir3ml80d900cj7lbbl5qft.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ridowanahmed.childlocator",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "307481661245-0pbg8cmgr29bsuurv2ikmcq9ce91fvp5.apps.googleusercontent.com",
+          "client_id": "307481661245-rf4echa07i0504kiptut5jdje7tdodik.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAEGHGtL1QzsJ9ambKFOtTtyXnJpXHDYcU"
+          "current_key": "AIzaSyDO6errASfHEes_AHBbqkRerDMZpe6KhNk"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "307481661245-0pbg8cmgr29bsuurv2ikmcq9ce91fvp5.apps.googleusercontent.com",
+              "client_id": "307481661245-rf4echa07i0504kiptut5jdje7tdodik.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

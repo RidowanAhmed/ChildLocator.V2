@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.ridowanahmed.childlocator.Login.ChildLoginActivity;
 import com.example.ridowanahmed.childlocator.Login.ParentLoginActivity;
+import com.example.ridowanahmed.childlocator.Map.ChildMap;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -21,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void childLoginBtn(View view){
-        Intent intent = new Intent(MainActivity.this,ChildLoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this,ChildLoginActivity.class);
+//        startActivity(intent);
+        startActivity(new Intent(MainActivity.this, ChildMap.class));
     }
 
     @Override
