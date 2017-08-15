@@ -27,10 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentLoginActivity" />
-        <activity android:name=".ChildLoginActivity" />
-        <activity android:name=".ParentDashboard" />
-        <activity android:name=".ChildDashboard" />
+        <activity android:name=".Login.ParentLoginActivity" />
+        <activity android:name=".Login.ChildLoginActivity" />
+        <activity android:name=".Dashboard.ParentDashboard" />
+        <activity android:name=".Dashboard.ChildDashboard" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

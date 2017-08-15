@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.ridowanahmed.childlocator.Login.ChildLoginActivity;
+import com.example.ridowanahmed.childlocator.Login.ParentLoginActivity;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

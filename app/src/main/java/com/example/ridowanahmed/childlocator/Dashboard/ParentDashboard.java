@@ -1,7 +1,9 @@
-package com.example.ridowanahmed.childlocator;
+package com.example.ridowanahmed.childlocator.Dashboard;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.ridowanahmed.childlocator.R;
 
 public class ParentDashboard extends AppCompatActivity {
 

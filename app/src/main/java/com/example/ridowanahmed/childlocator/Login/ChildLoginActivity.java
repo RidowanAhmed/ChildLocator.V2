@@ -1,11 +1,9 @@
-package com.example.ridowanahmed.childlocator;
+package com.example.ridowanahmed.childlocator.Login;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +11,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
+import com.example.ridowanahmed.childlocator.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
