@@ -16,4 +16,9 @@
     <string name="parent_login">PARENTS LOGIN</string>
     <string name="child_login">CHILD LOGIN</string>
     <string name="title_activity_child_map">Map</string>
+
+    <string name="PREF_FILE">PREF_FILE_INFO</string>
+    <string name="CHILD_NAME">CHILD_NAME_INFO</string>
+    <string name="CHILD_GIVE_NUMBER">CHILD_GIVE_NUMBER_INFO</string>
+    <string name="PARENT_GIVE_NUMBER">PARENT_GIVE_NUMBER_INFO</string>
 </resources>

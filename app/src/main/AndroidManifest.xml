@@ -8,12 +8,6 @@
          location permissions for the 'MyLocation' functionality. 
     -->
 
-    <permission
-        android:name="my.package.name.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
-
-    <uses-permission android:name="my.package.name.permission.MAPS_RECEIVE"/>
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -55,6 +49,11 @@
         <activity
             android:name=".Map.ChildMap"
             android:label="@string/title_activity_child_map"></activity>
+
+        <service
+            android:name=".GPS_Service"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

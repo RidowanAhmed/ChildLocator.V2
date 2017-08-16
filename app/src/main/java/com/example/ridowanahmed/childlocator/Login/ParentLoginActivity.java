@@ -1,6 +1,7 @@
 package com.example.ridowanahmed.childlocator.Login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,9 @@ public class ParentLoginActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mFirebaseAuthStateListener;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    private String mVerificationId;
+    private String mVerificationId, phoneNumber;
+
+    SharedPreferences mSharedPreferences;
 
     @Override
     protected void onStart() {
@@ -47,6 +50,10 @@ public class ParentLoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
+                    mSharedPreferences = ParentLoginActivity.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+                    SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                    mEditor.putString(getString(R.string.PARENT_GIVE_NUMBER), phoneNumber);
+                    mEditor.commit();
                     Toast.makeText(ParentLoginActivity.this, "Now you are logged into " + firebaseAuth.getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ParentLoginActivity.this, ParentDashboard.class);
                     Log.e("ParentLoginActivity", "Starting ParentDashboard Activity");
@@ -88,7 +95,7 @@ public class ParentLoginActivity extends AppCompatActivity {
     }
 
     public void parentLogin(View view) {
-        String phoneNumber = editText_parent_number.getText().toString();
+        phoneNumber = editText_parent_number.getText().toString();
         if (phoneNumber.length() != 11) {
             editText_parent_number.setError(getString(R.string.number_error));
             return;
