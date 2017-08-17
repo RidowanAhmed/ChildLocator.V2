@@ -45,7 +45,7 @@ public class ChildInformation {
 
     @Override
     public String toString() {
-        String info = getChildName() + "\n" + "\nTime: " + getTimeString() +
+        String info = getChildName() + "\nTime: " + getTimeString() +
                 "\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude();
         return info;
     }

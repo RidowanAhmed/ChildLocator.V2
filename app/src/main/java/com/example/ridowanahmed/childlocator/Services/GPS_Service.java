@@ -19,8 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class GPS_Service extends Service
-{
+public class GPS_Service extends Service {
     private static final String TAG = "ChildLocator_GPS";
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 1000;
