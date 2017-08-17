@@ -26,32 +26,39 @@ import java.util.ArrayList;
 public class ParentDashboard extends AppCompatActivity {
     public static String CHILD_NAME = "passing@child_name";
     private DatabaseReference childData;
-    SharedPreferences mSharedPreferences;
+    private SharedPreferences mSharedPreferences;
     private final String TAG = "ParentDashboard";
-    ArrayList<ChildInformation> childList;
-    RecyclerView.LayoutManager layoutManager;
+    private ArrayList<ChildInformation> childList;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView recycler_view;
+    private RecyclerAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_dashboard);
+        recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
+        layoutManager = new GridLayoutManager(ParentDashboard.this, 1);
 
         mSharedPreferences = ParentDashboard.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
         final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
+        Log.e(TAG, "Mobile " + phoneNumber);
         childList = new ArrayList<>();
 
         childData = FirebaseDatabase.getInstance().getReference(phoneNumber);
         childData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                    Log.e(TAG, childSnapshot.getKey());
-
-                    childList.add(childSnapshot.getValue(ChildInformation.class));
-                    showChildList(childList);
+                if(childList.size() != 0) {
+                    clearData();
                 }
-            }
 
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                    Log.e(TAG, "Key " + childSnapshot.getKey());
+                    childList.add(childSnapshot.getValue(ChildInformation.class));
+                }
+                showChildList(childList);
+            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -59,18 +66,14 @@ public class ParentDashboard extends AppCompatActivity {
     }
 
     private void showChildList(final ArrayList<ChildInformation> childList) {
-        RecyclerAdapter adapter = new RecyclerAdapter(ParentDashboard.this, childList);
-
-        RecyclerView recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
-        layoutManager = new GridLayoutManager(ParentDashboard.this, 1);
+        recyclerAdapter = new RecyclerAdapter(ParentDashboard.this, childList);
         recycler_view.setLayoutManager(layoutManager);
         recycler_view.setHasFixedSize(true);
-        recycler_view.setAdapter(adapter);
+        recycler_view.setAdapter(recyclerAdapter);
 
         recycler_view.addOnItemTouchListener(
                 new RecyclerItemClickListener(ParentDashboard.this, recycler_view ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        // do whatever
                         ChildInformation item = childList.get(position);
                         Intent childIntent = new Intent(ParentDashboard.this, ParentMap.class);
                         Log.e(TAG, "Click " + item.getChildName());
@@ -79,9 +82,7 @@ public class ParentDashboard extends AppCompatActivity {
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
                         ChildInformation item = childList.get(position);
-
                         Toast.makeText(ParentDashboard.this, item.toString(), Toast.LENGTH_LONG).show();
                     }
                 })
@@ -92,4 +93,10 @@ public class ParentDashboard extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    public void clearData() {
+        childList.clear(); //clear list
+        recyclerAdapter.notifyDataSetChanged(); //let your adapter know about the changes and reload view.
+    }
 }
+

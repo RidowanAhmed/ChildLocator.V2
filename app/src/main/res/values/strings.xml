@@ -24,4 +24,5 @@
     <string name="title_activity_child_map">Map</string>
     <string name="title_activity_parent_map">Child Location</string>
     <string name="location_hint">Click On the Name to the View Location of Your Child</string>
+    <string name="login_options">LOGIN OPTIONS</string>
 </resources>
