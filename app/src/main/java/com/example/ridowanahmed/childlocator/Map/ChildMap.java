@@ -171,7 +171,6 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback,
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     // permission was granted, yay! Do the
                     // location-related task you need to do.
                     if (ContextCompat.checkSelfPermission(this,
@@ -185,7 +184,6 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback,
                     }
 
                 } else {
-
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                     Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
