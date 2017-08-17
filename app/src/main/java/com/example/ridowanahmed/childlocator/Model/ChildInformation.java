@@ -1,15 +1,17 @@
 package com.example.ridowanahmed.childlocator.Model;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  * Created by Ridowan Ahmed on 0012, August, 12, 2017.
  */
 
 public class ChildInformation {
 
-    String childName;
-    double latitude;
-    double longitude;
-    long time;
+    private String childName;
+    private double latitude, longitude;
+    private long time;
 
     public ChildInformation() {
     }
@@ -35,5 +37,16 @@ public class ChildInformation {
 
     public long getTime() {
         return time;
+    }
+
+    public String getTimeString() {
+        return DateFormat.getDateTimeInstance().format(new Date(getTime()));
+    }
+
+    @Override
+    public String toString() {
+        String info = getChildName() + "\n" + "\nTime: " + getTimeString() +
+                "\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude();
+        return info;
     }
 }

@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
+import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
 import com.example.ridowanahmed.childlocator.Login.ChildLoginActivity;
 import com.example.ridowanahmed.childlocator.Login.ParentLoginActivity;
 import com.example.ridowanahmed.childlocator.Map.ChildMap;
+import com.example.ridowanahmed.childlocator.Map.ParentMap;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -18,14 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void parentLoginBtn(View view){
-        Intent intent = new Intent(MainActivity.this,ParentLoginActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(MainActivity.this,ParentLoginActivity.class));
     }
 
     public void childLoginBtn(View view){
-        Intent intent = new Intent(MainActivity.this,ChildLoginActivity.class);
-        startActivity(intent);
-//        startActivity(new Intent(MainActivity.this, ChildDashboard.class));
+        startActivity(new Intent(MainActivity.this,ChildLoginActivity.class));
     }
 
     @Override

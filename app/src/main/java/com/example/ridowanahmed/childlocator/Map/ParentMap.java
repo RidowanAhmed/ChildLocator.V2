@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.example.ridowanahmed.childlocator.GPS_Service;
+import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
 import com.example.ridowanahmed.childlocator.Model.ChildInformation;
 import com.example.ridowanahmed.childlocator.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,9 +30,10 @@ import com.google.firebase.database.ValueEventListener;
 public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mMap;
     SupportMapFragment mMapFrag;
+    private DatabaseReference childData;
+    private SharedPreferences mSharedPreferences;
     Marker mMarker;
-    DatabaseReference childData;
-    SharedPreferences mSharedPreferences;
+    private final String TAG = "ParentMap";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,60 +44,62 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
         mMapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFrag.getMapAsync(this);
 
-        mSharedPreferences = ParentMap.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
-        final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
-        childData = FirebaseDatabase.getInstance().getReference(phoneNumber);
+        SharedPreferences mSharedPreferences = ParentMap.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+        //        final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
+        final String childName = getIntent().getExtras().getString(ParentDashboard.CHILD_NAME);
+        final String phoneNumber = "01820213153";
+        Log.e(TAG, childName + " " + phoneNumber);
+        childData = FirebaseDatabase.getInstance().getReference(phoneNumber).child(childName);
+
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         childData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    if(mMarker !=  null){
-                        mMarker.remove();
-                    }
-                    ChildInformation mChildInformation = dataSnapshot.getValue(ChildInformation.class);
-                    LatLng latLng = new LatLng(mChildInformation.getLatitude(), mChildInformation.getLongitude());
-
-                    Log.e("Latitude " + mChildInformation.getLatitude() , "Longitude " + mChildInformation.getLongitude());
-
-                    String title = mChildInformation.getChildName();
-                    MarkerOptions locationMarker = new MarkerOptions().position(latLng).title(title);
-                    locationMarker.snippet(calculateTime(mChildInformation.getTime()));
-                    mMarker = mMap.addMarker(locationMarker);
-                    mMarker.showInfoWindow();
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mMap.animateCamera(CameraUpdateFactory.zoomBy(14));
-
-                    Toast toast = Toast.makeText(getApplicationContext(), "Locating " + title, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 30);
-                    toast.show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Can't find your children. Try again later", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+                ChildInformation childInfo = dataSnapshot.getValue(ChildInformation.class);
+                showOnMap(childInfo);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-    }
-    private String calculateTime(long timeInMillis){
-        int hours = (int) ((timeInMillis / (1000 * 60 * 60)) % 60);
-        int minutes = (int) ((timeInMillis / (1000 * 60)) % 60);
-        int seconds = (int) ((timeInMillis / 1000) % 60);
 
-        String currentTime;
-        if(hours >= 12) {
-            hours -= 12;
-            currentTime = hours+":"+minutes+":"+seconds + " PM";
-        } else {
-            currentTime = hours+":"+minutes+":"+seconds + " AM";
-        }
-        return currentTime;
+//        LatLng sydney = new LatLng(-33.852, 151.211);
+//        mMap.addMarker(new MarkerOptions().position(sydney)
+//                .title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        googleMap.animateCamera(CameraUpdateFactory.zoomBy(14));
     }
+
+    private void showOnMap(ChildInformation mChildInformation) {
+        if(mMap ==  null){
+            Log.e(TAG, "Map is null");
+            return;
+        } else if(mMarker != null) {
+            mMarker.remove();
+        }
+
+        LatLng latLng = new LatLng(mChildInformation.getLatitude(), mChildInformation.getLongitude());
+
+        Log.e("Latitude " + mChildInformation.getLatitude() , "Longitude " + mChildInformation.getLongitude());
+
+        String title = mChildInformation.getChildName();
+        MarkerOptions locationMarker = new MarkerOptions().position(latLng).title(title);
+        locationMarker.snippet(mChildInformation.getTimeString());
+        mMarker = mMap.addMarker(locationMarker);
+        mMarker.showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+//        mMap.animateCamera(CameraUpdateFactory.zoomBy(14));
+        Toast toast = Toast.makeText(getApplicationContext(), "Locating " + title, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 30);
+        toast.show();
+    }
+
+
 }

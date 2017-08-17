@@ -7,52 +7,24 @@
     android:background="@drawable/background"
     android:orientation="vertical"
     tools:context="com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard">
-    <LinearLayout
+
+    <TextView
+        android:alpha="0.8"
+        android:background="#cecece"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center"
+        android:textStyle="bold|italic"
+        android:text="@string/location_hint"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/logo" />
-    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
 
-    <LinearLayout
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".6"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:background="@drawable/buttonshape"
-            android:shadowColor="#9B25A8"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
-            android:text="Add Child"
-            android:textColor="#000000"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/button_track_child"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:background="@drawable/buttonshape"
-            android:shadowColor="#9B25A8"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
-            android:text="Track Child"
-            android:textColor="#000000"
-            android:textSize="30sp" />
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:text="Hello World!"/>
 
 </LinearLayout>

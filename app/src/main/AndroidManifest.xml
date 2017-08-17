@@ -16,6 +16,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,6 +36,8 @@
         <activity android:name=".Login.ChildLoginActivity" />
         <activity android:name=".Dashboard.ParentDashboard" />
         <activity android:name=".Dashboard.ChildDashboard" />
+        <activity android:name=".Map.ChildMap" />
+        <activity android:name=".Map.ParentMap" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -46,12 +50,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".Map.ChildMap"
-            android:label="@string/title_activity_child_map"></activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <service
-            android:name=".GPS_Service"
+            android:name=".Services.GPS_Service"
             android:exported="false">
         </service>
     </application>
