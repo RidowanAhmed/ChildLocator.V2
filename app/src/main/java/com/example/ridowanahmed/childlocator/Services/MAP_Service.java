@@ -30,8 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 //Location Callback
 public class MAP_Service extends Service implements ConnectionCallbacks, OnConnectionFailedListener {
     private static final String TAG = "MAP_Services";
-    private static final int LOCATION_INTERVAL = 1000;
-    private static final float LOCATION_DISTANCE = 0.3f;
+    private static final int LOCATION_INTERVAL = 2000;
+    private static final float LOCATION_DISTANCE = 1f;
 
     private SharedPreferences mSharedPreferences;
     private DatabaseReference databaseReference;
@@ -41,12 +41,14 @@ public class MAP_Service extends Service implements ConnectionCallbacks, OnConne
 
         @Override
         public void onLocationChanged(Location location) {
+            Log.e(TAG, "onLocationChanged");
             saveData(location);
         }
     }
     GoogleApiClient client = null;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.e(TAG, "onStartCommand");
         mSharedPreferences = MAP_Service.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
         childName = mSharedPreferences.getString(getString(R.string.CHILD_NAME), "");
         phoneNumber = mSharedPreferences.getString(getString(R.string.CHILD_GIVE_NUMBER), "");
@@ -66,16 +68,20 @@ public class MAP_Service extends Service implements ConnectionCallbacks, OnConne
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy");
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        Log.e(TAG, "onBind");
         return null;
     }
 
     @Override
     public void onConnected(Bundle arg0) {
+        Log.e(TAG, "onConnected");
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(LOCATION_INTERVAL);
         mLocationRequest.setSmallestDisplacement(LOCATION_DISTANCE);
@@ -97,11 +103,12 @@ public class MAP_Service extends Service implements ConnectionCallbacks, OnConne
 
     @Override
     public void onConnectionSuspended(int arg0) {
-        // TODO Auto-generated method stub
+        Log.e(TAG, "onConnectionSuspended");
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult arg0) {
+        Log.e(TAG, "onConnectionFailed");
     }
     private void saveData(Location location) {
         if(databaseReference == null) {
