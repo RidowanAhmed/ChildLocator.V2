@@ -2,18 +2,18 @@ package com.example.ridowanahmed.childlocator.Login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
+import android.support.design.widget.TextInputEditText;
 import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
-import com.example.ridowanahmed.childlocator.MainActivity;
 import com.example.ridowanahmed.childlocator.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,8 +26,9 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 public class ChildLoginActivity extends AppCompatActivity {
+    private static final String TAG = "ChildLoginActivity";
     private LinearLayout linearLayout_inputNumber, linearLayout_inputCode;
-    private EditText editText_child_name, editText_child_number, editText_child_code;
+    private TextInputEditText editText_child_name, editText_child_number, editText_child_code;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mFirebaseAuthStateListener;
@@ -51,9 +52,9 @@ public class ChildLoginActivity extends AppCompatActivity {
 
         linearLayout_inputNumber = (LinearLayout) findViewById(R.id.input_number);
         linearLayout_inputCode = (LinearLayout) findViewById(R.id.input_code);
-        editText_child_name = (EditText)findViewById(R.id.editText_child_name);
-        editText_child_number = (EditText)findViewById(R.id.editText_child_number);
-        editText_child_code = (EditText)findViewById(R.id.editText_child_code);
+        editText_child_name = (TextInputEditText)findViewById(R.id.editText_child_name);
+        editText_child_number = (TextInputEditText)findViewById(R.id.editText_child_number);
+        editText_child_code = (TextInputEditText)findViewById(R.id.editText_child_code);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -155,5 +156,6 @@ public class ChildLoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e(TAG, "Destroyed");
     }
 }

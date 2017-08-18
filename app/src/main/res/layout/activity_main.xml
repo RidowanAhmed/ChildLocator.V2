@@ -8,52 +8,48 @@
     android:orientation="vertical"
     tools:context="com.example.ridowanahmed.childlocator.MainActivity">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo" />
-    </LinearLayout>
+        android:layout_weight=".5"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight=".4"
+        android:layout_weight=".2"
         android:gravity="center"
         android:text="@string/login_options"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textColor="#000000"
-        android:textSize="38sp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textSize="36sp"
         android:textStyle="bold|italic" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".7"
+        android:layout_weight=".3"
         android:gravity="center"
+        android:paddingBottom="30dp"
         android:orientation="horizontal">
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+
             android:onClick="parentLoginBtn"
             android:scaleType="fitCenter"
             android:src="@drawable/parents1" />
 
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="20dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
             android:onClick="childLoginBtn"
             android:scaleType="fitCenter"
             android:src="@drawable/child1" />

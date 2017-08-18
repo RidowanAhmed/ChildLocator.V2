@@ -100,6 +100,7 @@ public class ParentLoginActivity extends AppCompatActivity {
             editText_parent_number.setError(getString(R.string.number_error));
             return;
         }
+        Log.e(TAG, "Mobile " + phoneNumber);
         Toast.makeText(getApplicationContext(), "Request send. Wait a second", Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,                                                 // Phone number to verify

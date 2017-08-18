@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class MAP_Service extends Service implements ConnectionCallbacks, OnConne
     public void onDestroy() {
     }
 
+    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;

@@ -9,12 +9,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <ImageView android:src="@drawable/logo"
             android:layout_width="wrap_content"
@@ -39,30 +35,30 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/child_name_hint"
                 app:hintTextAppearance="@style/TextAppearance.AppCompat">
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_child_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:maxLength="25"
-                    android:hint="@string/child_name_hint" />
+                    android:maxLength="25" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/child_login_hint"
                 app:hintTextAppearance="@style/TextAppearance.AppCompat">
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_child_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:maxLength="11"
-                    android:hint="@string/child_login_hint" />
+                    android:maxLength="11"/>
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -82,16 +78,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextAppearance="@style/TextAppearance.AppCompat">
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_child_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:maxLength="6"
                     android:hint="@string/child_code_hint" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"

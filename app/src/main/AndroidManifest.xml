@@ -55,11 +55,6 @@
             android:value="@integer/google_play_services_version" />
 
         <service
-            android:name=".Services.GPS_Service"
-            android:exported="false">
-        </service>
-
-        <service
             android:name=".Services.MAP_Service"
             android:exported="false">
         </service>
