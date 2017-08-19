@@ -64,7 +64,6 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
                 R.array.country, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerChild.setAdapter(adapter);
-
         spinnerChild.setOnItemSelectedListener(ChildLoginActivity.this);
 
         mFirebaseAuth = FirebaseAuth.getInstance();

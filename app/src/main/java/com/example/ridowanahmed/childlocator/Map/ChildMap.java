@@ -44,7 +44,7 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_map);
 
-        getSupportActionBar().setTitle("Map Location Activity");
+        getSupportActionBar().setTitle(getString(R.string.child_map_title));
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
@@ -167,14 +167,9 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, L
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         if (mGoogleApiClient == null) {
                             buildGoogleApiClient();
                         }
@@ -186,7 +181,7 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, L
                     // functionality that depends on this permission.
                     Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
                 }
-                return;
+//                return;
             }
 
             // other 'case' lines to check for other
