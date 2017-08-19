@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
@@ -22,13 +25,15 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class ParentLoginActivity extends AppCompatActivity {
+public class ParentLoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private Spinner spinner_countryCode;
     private final String TAG = "ParentLoginActivity";
     TextInputEditText editText_parent_number;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mFirebaseAuthStateListener;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    private String mVerificationId, phoneNumber;
+    private String mVerificationId, phoneNumber, countryCode;
 
     SharedPreferences mSharedPreferences;
 
@@ -42,6 +47,15 @@ public class ParentLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
+        spinner_countryCode = (Spinner)findViewById(R.id.parent_countryCode);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.country, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_countryCode.setAdapter(adapter);
+        spinner_countryCode.setOnItemSelectedListener(ParentLoginActivity.this);
+
+
 
         editText_parent_number = (TextInputEditText) findViewById(R.id.editText_parent_number);
 
@@ -74,6 +88,7 @@ public class ParentLoginActivity extends AppCompatActivity {
             public void onVerificationFailed(FirebaseException e) {
                 //incorrect phone number, verification code, emulator, etc.
                 Toast.makeText(ParentLoginActivity.this, "onVerificationFailed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, e.getMessage());
             }
 
             @Override
@@ -95,11 +110,15 @@ public class ParentLoginActivity extends AppCompatActivity {
     }
 
     public void parentLogin(View view) {
-        phoneNumber = editText_parent_number.getText().toString();
-        if (phoneNumber.length() != 11) {
+        String mobileNumber = editText_parent_number.getText().toString();
+        Log.e(TAG, countryCode);
+        if (mobileNumber.length() != 11) {
             editText_parent_number.setError(getString(R.string.number_error));
             return;
+        } else if(countryCode == null) {
+            editText_parent_number.setError(getString(R.string.spinner_error));
         }
+        phoneNumber = countryCode + mobileNumber;
         Log.e(TAG, "Mobile " + phoneNumber);
         Toast.makeText(getApplicationContext(), "Request send. Wait a second", Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -129,5 +148,19 @@ public class ParentLoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e(TAG, "onDestroy");
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        countryCode =  adapterView.getItemAtPosition(i).toString();
+
+        Log.e(TAG, countryCode);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

@@ -44,19 +44,32 @@
                     android:inputType="textPersonName"
                     android:maxLength="25" />
             </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/child_login_hint"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat">
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editText_child_number"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/child_countryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                </Spinner>
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:maxLength="11"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:hint="@string/child_login_hint"
+                    app:hintTextAppearance="@style/TextAppearance.AppCompat">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editText_child_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:textColor="#ffffff"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
 
             <Button
                 android:layout_width="match_parent"

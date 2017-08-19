@@ -45,12 +45,10 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
         mMapFrag.getMapAsync(this);
 
         SharedPreferences mSharedPreferences = ParentMap.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
-        //        final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
+        final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
         final String childName = getIntent().getExtras().getString(ParentDashboard.CHILD_NAME);
-        final String phoneNumber = "01820213153";
         Log.e(TAG, childName + " " + phoneNumber);
         childData = FirebaseDatabase.getInstance().getReference(phoneNumber).child(childName);
-
 
     }
 
@@ -94,8 +92,8 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
         locationMarker.snippet(mChildInformation.getTimeString());
         mMarker = mMap.addMarker(locationMarker);
         mMarker.showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-//        mMap.animateCamera(CameraUpdateFactory.zoomBy(14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
+
         Toast toast = Toast.makeText(getApplicationContext(), "Locating " + title, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 30);
         toast.show();

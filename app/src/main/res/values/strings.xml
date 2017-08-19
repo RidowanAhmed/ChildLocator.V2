@@ -9,6 +9,8 @@
     <string name="number_error">A mobile number must be 11 digit</string>
     <string name="code_error">A code must be 6 digit</string>
     <string name="name_error">Name can\'t be empty</string>
+    <string name="spinner_error">Country code missing</string>
+
 
     <string name="sms">SEND SMS</string>
     <string name="submit">Submit</string>

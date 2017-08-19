@@ -9,8 +9,11 @@ import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.support.design.widget.TextInputEditText;
 import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
@@ -25,7 +28,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class ChildLoginActivity extends AppCompatActivity {
+public class ChildLoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private static final String TAG = "ChildLoginActivity";
     private LinearLayout linearLayout_inputNumber, linearLayout_inputCode;
     private TextInputEditText editText_child_name, editText_child_number, editText_child_code;
@@ -35,9 +38,10 @@ public class ChildLoginActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private String mVerificationId;
-    private String childName, phoneNumber;
+    private String childName, phoneNumber, countryCode, mobileNumber;
 
     SharedPreferences mSharedPreferences;
+    private Spinner spinnerChild;
 
     @Override
     protected void onStart() {
@@ -55,6 +59,13 @@ public class ChildLoginActivity extends AppCompatActivity {
         editText_child_name = (TextInputEditText)findViewById(R.id.editText_child_name);
         editText_child_number = (TextInputEditText)findViewById(R.id.editText_child_number);
         editText_child_code = (TextInputEditText)findViewById(R.id.editText_child_code);
+        spinnerChild = (Spinner) findViewById(R.id.child_countryCode);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.country, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerChild.setAdapter(adapter);
+
+        spinnerChild.setOnItemSelectedListener(ChildLoginActivity.this);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -108,16 +119,15 @@ public class ChildLoginActivity extends AppCompatActivity {
 
     public void requestCode(View view) {
         childName = editText_child_name.getText().toString().trim();
-        phoneNumber = editText_child_number.getText().toString();
-
+        mobileNumber = editText_child_number.getText().toString();
         if(TextUtils.isEmpty(childName)) {
             editText_child_name.setError(getString(R.string.name_error));
             return;
-        } else if (phoneNumber.length() != 11) {
+        } else if (mobileNumber.length() != 11) {
             editText_child_number.setError(getString(R.string.number_error));
             return;
         }
-
+        phoneNumber = countryCode + mobileNumber;
         Toast.makeText(getApplicationContext(), "Request send. Wait a second", Toast.LENGTH_SHORT).show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,
@@ -157,5 +167,15 @@ public class ChildLoginActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.e(TAG, "Destroyed");
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        countryCode = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

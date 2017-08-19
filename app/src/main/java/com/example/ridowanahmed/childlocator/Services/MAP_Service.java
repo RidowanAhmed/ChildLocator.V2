@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -62,8 +61,6 @@ public class MAP_Service extends Service implements ConnectionCallbacks, OnConne
         client.connect();
 
         return START_STICKY;
-
-
     }
 
     @Override

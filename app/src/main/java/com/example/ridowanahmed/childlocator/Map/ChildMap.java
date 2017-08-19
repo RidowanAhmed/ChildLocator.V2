@@ -128,7 +128,7 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, L
         mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         //move map camera
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
 
     }
 
