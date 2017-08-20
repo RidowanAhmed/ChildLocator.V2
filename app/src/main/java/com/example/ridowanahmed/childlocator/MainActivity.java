@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
 import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
@@ -25,15 +27,19 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private FirebaseAuth mFirebaseAuth;
     private AlertDialog alertDialog;
-
+    private TextView textView_loginOptions;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         mFirebaseAuth = FirebaseAuth.getInstance();
         Log.e(TAG, "Auth " + mFirebaseAuth.toString());
+        textView_loginOptions = (TextView) findViewById(R.id.textView_loginOptions);
+        Typeface lobster = Typeface.createFromAsset(getAssets(), "Lobster-Regular.ttf");
+        textView_loginOptions.setTypeface(lobster);
 
         //alert dialog message for internet
         alertDialog = new AlertDialog.Builder(MainActivity.this).create();

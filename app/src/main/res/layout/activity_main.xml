@@ -9,6 +9,7 @@
     tools:context="com.example.ridowanahmed.childlocator.MainActivity">
 
     <ImageView
+        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".5"
@@ -16,11 +17,13 @@
         android:src="@drawable/logo" />
 
     <TextView
+        android:id="@+id/textView_loginOptions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".2"
         android:gravity="center"
         android:text="@string/login_options"
+        android:textColor="#011603"
         android:textAppearance="?android:textAppearanceLarge"
         android:textSize="36sp"
         android:textStyle="bold|italic" />

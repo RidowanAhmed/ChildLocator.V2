@@ -154,9 +154,7 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         countryCode =  adapterView.getItemAtPosition(i).toString();
-
         Log.e(TAG, countryCode);
-
     }
 
     @Override
