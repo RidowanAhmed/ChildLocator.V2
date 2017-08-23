@@ -58,6 +58,14 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
         linearLayout_inputCode = (LinearLayout) findViewById(R.id.input_code);
         editText_child_name = (TextInputEditText)findViewById(R.id.editText_child_name);
         editText_child_number = (TextInputEditText)findViewById(R.id.editText_child_number);
+        editText_child_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    editText_child_number.setHint(getString(R.string.mobile_number_hint));
+                else
+                    editText_child_number.setHint("");
+            }
+        });
         editText_child_code = (TextInputEditText)findViewById(R.id.editText_child_code);
         spinnerChild = (Spinner) findViewById(R.id.child_countryCode);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),

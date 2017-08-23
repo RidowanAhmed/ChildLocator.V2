@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.ridowanahmed.childlocator.Map.ParentMap;
+import com.example.ridowanahmed.childlocator.Map.ReverseGeoCoding;
 import com.example.ridowanahmed.childlocator.Model.ChildInformation;
 import com.example.ridowanahmed.childlocator.R;
 import com.example.ridowanahmed.childlocator.adapter.RecyclerAdapter;
@@ -83,6 +84,7 @@ public class ParentDashboard extends AppCompatActivity {
 
                     @Override public void onLongItemClick(View view, int position) {
                         ChildInformation item = childList.get(position);
+                        ReverseGeoCoding rg = new ReverseGeoCoding(ParentDashboard.this);
                         Toast.makeText(ParentDashboard.this, item.toString(), Toast.LENGTH_LONG).show();
                     }
                 })

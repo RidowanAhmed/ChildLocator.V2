@@ -48,6 +48,7 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_login);
         spinner_countryCode = (Spinner)findViewById(R.id.parent_countryCode);
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
                 R.array.country, android.R.layout.simple_spinner_item);
@@ -55,9 +56,15 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
         spinner_countryCode.setAdapter(adapter);
         spinner_countryCode.setOnItemSelectedListener(ParentLoginActivity.this);
 
-
-
         editText_parent_number = (TextInputEditText) findViewById(R.id.editText_parent_number);
+        editText_parent_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    editText_parent_number.setHint(getString(R.string.mobile_number_hint));
+                else
+                    editText_parent_number.setHint("");
+            }
+        });
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -67,8 +74,10 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
                     mSharedPreferences = ParentLoginActivity.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = mSharedPreferences.edit();
                     mEditor.putString(getString(R.string.PARENT_GIVE_NUMBER), phoneNumber);
-                    Log.e(TAG, "mobile " + phoneNumber);
                     mEditor.commit();
+
+                    Log.e(TAG, "mobile " + phoneNumber);
+
                     Toast.makeText(ParentLoginActivity.this, "Now you are logged into " + firebaseAuth.getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Starting ParentDashboard Activity");
                     startActivity(new Intent(ParentLoginActivity.this, ParentDashboard.class));
@@ -128,7 +137,6 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
                 ParentLoginActivity.this,                                    // Activity (for callback binding)
                 mCallbacks
         );
-        return;
     }
 
     private void signInWithPhone(PhoneAuthCredential phoneAuthCredential) {
@@ -159,6 +167,5 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

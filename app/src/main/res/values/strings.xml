@@ -6,6 +6,7 @@
     <string name="child_name_hint">Enter Your Full Name</string>
     <string name="child_login_hint">Enter Your Parent\'s Mobile Number....</string>
     <string name="child_code_hint">Enter the Code Sent to Your Parent\'s Mobile</string>
+    <string name="mobile_number_hint">01XXXXXXXXX</string>
 
     <string name="number_error">A mobile number must be 11 digit</string>
     <string name="code_error">A code must be 6 digit</string>
@@ -28,7 +29,6 @@
     <string name="title_activity_parent_map">Child Location</string>
     <string name="location_hint">Click On the Name to the View Location of Your Child</string>
     <string name="login_options">LOGIN OPTIONS</string>
-
 
     <string-array name="country">
         <item>+88</item>

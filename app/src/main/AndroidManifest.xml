@@ -32,8 +32,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.ParentLoginActivity" />
-        <activity android:name=".Login.ChildLoginActivity" />
+        <activity
+            android:name=".Login.ParentLoginActivity"
+            android:noHistory="true">
+        </activity>
+        <activity
+            android:name=".Login.ChildLoginActivity"
+            android:noHistory="true">
+        </activity>
         <activity android:name=".Dashboard.ParentDashboard" />
         <activity android:name=".Dashboard.ChildDashboard" />
         <activity android:name=".Map.ChildMap" />

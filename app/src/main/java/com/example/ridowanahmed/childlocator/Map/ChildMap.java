@@ -27,6 +27,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * Created by Ridowan Ahmed on 0016, August, 16, 2017.
+ */
+
 public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, LocationListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -42,9 +46,10 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, L
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_map);
+        getSupportActionBar().hide();
+        setContentView(R.layout.fragment_map);
 
-        getSupportActionBar().setTitle(getString(R.string.child_map_title));
+//        getSupportActionBar().setTitle(getString(R.string.child_map_title));
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);

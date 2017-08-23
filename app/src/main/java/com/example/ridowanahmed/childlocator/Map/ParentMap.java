@@ -31,16 +31,16 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mMap;
     SupportMapFragment mMapFrag;
     private DatabaseReference childData;
-    private SharedPreferences mSharedPreferences;
     Marker mMarker;
     private final String TAG = "ParentMap";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_map);
+        getSupportActionBar().hide();
+        setContentView(R.layout.fragment_map);
 
-        getSupportActionBar().setTitle("Child Location Activity");
+//        getSupportActionBar().setTitle("Child Location Activity");
         mMapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFrag.getMapAsync(this);
 
@@ -55,6 +55,7 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         childData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -67,12 +68,6 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
 
             }
         });
-
-//        LatLng sydney = new LatLng(-33.852, 151.211);
-//        mMap.addMarker(new MarkerOptions().position(sydney)
-//                .title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//        googleMap.animateCamera(CameraUpdateFactory.zoomBy(14));
     }
 
     private void showOnMap(ChildInformation mChildInformation) {
@@ -98,6 +93,4 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 30);
         toast.show();
     }
-
-
 }
