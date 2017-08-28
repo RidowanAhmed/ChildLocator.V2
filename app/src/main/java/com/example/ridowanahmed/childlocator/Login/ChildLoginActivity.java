@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -54,6 +55,9 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_login);
 
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
         linearLayout_inputNumber = (LinearLayout) findViewById(R.id.input_number);
         linearLayout_inputCode = (LinearLayout) findViewById(R.id.input_code);
         editText_child_name = (TextInputEditText)findViewById(R.id.editText_child_name);

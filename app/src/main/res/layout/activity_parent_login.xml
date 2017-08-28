@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_color"
     tools:context="com.example.ridowanahmed.childlocator.Login.ParentLoginActivity">
 
     <LinearLayout
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="10dp"
+            android:textColor="#ffffff"
             android:gravity="center"
             android:text="@string/parent_login"
             android:textSize="24sp"
@@ -51,6 +52,7 @@
                 android:layout_marginBottom="8dp"
                 app:hintTextAppearance="@style/TextAppearance.AppCompat"
                 android:hint="@string/parent_login_hint"
+                android:textColorHint="#ffffff"
                 android:orientation="horizontal">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_parent_number"

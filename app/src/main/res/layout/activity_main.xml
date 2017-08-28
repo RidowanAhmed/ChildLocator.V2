@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_color"
     android:orientation="vertical"
     tools:context="com.example.ridowanahmed.childlocator.MainActivity">
 
@@ -23,7 +23,7 @@
         android:layout_weight=".2"
         android:gravity="center"
         android:text="@string/login_options"
-        android:textColor="#011603"
+        android:textColor="#ffffff"
         android:textAppearance="?android:textAppearanceLarge"
         android:textSize="36sp"
         android:textStyle="bold|italic" />
@@ -37,17 +37,18 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:background="@null"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="10dp"
-
             android:onClick="parentLoginBtn"
             android:scaleType="fitCenter"
-            android:src="@drawable/parents1" />
+            android:src="@drawable/button_parent" />
 
         <ImageButton
+            android:background="@null"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -55,7 +56,7 @@
             android:layout_marginLeft="10dp"
             android:onClick="childLoginBtn"
             android:scaleType="fitCenter"
-            android:src="@drawable/child1" />
+            android:src="@drawable/button_child" />
 
     </LinearLayout>
 
