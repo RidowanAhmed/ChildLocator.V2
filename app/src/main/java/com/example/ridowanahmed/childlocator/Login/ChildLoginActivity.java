@@ -128,6 +128,7 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
         };
     }
 
+
     public void requestCode(View view) {
         childName = editText_child_name.getText().toString().trim();
         mobileNumber = editText_child_number.getText().toString();
