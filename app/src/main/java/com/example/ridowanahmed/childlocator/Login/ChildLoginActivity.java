@@ -4,21 +4,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.support.design.widget.TextInputEditText;
+
 import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
-import com.example.ridowanahmed.childlocator.R;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -53,27 +52,27 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_login);
+        setContentView(com.example.ridowanahmed.childlocator.R.layout.activity_child_login);
 
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
-        linearLayout_inputNumber = (LinearLayout) findViewById(R.id.input_number);
-        linearLayout_inputCode = (LinearLayout) findViewById(R.id.input_code);
-        editText_child_name = (TextInputEditText)findViewById(R.id.editText_child_name);
-        editText_child_number = (TextInputEditText)findViewById(R.id.editText_child_number);
+        linearLayout_inputNumber = (LinearLayout) findViewById(com.example.ridowanahmed.childlocator.R.id.input_number);
+        linearLayout_inputCode = (LinearLayout) findViewById(com.example.ridowanahmed.childlocator.R.id.input_code);
+        editText_child_name = (TextInputEditText)findViewById(com.example.ridowanahmed.childlocator.R.id.editText_child_name);
+        editText_child_number = (TextInputEditText)findViewById(com.example.ridowanahmed.childlocator.R.id.editText_child_number);
         editText_child_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
-                    editText_child_number.setHint(getString(R.string.mobile_number_hint));
+                    editText_child_number.setHint(getString(com.example.ridowanahmed.childlocator.R.string.mobile_number_hint));
                 else
                     editText_child_number.setHint("");
             }
         });
-        editText_child_code = (TextInputEditText)findViewById(R.id.editText_child_code);
-        spinnerChild = (Spinner) findViewById(R.id.child_countryCode);
+        editText_child_code = (TextInputEditText)findViewById(com.example.ridowanahmed.childlocator.R.id.editText_child_code);
+        spinnerChild = (Spinner) findViewById(com.example.ridowanahmed.childlocator.R.id.child_countryCode);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
-                R.array.country, android.R.layout.simple_spinner_item);
+                com.example.ridowanahmed.childlocator.R.array.country, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerChild.setAdapter(adapter);
         spinnerChild.setOnItemSelectedListener(ChildLoginActivity.this);
@@ -83,10 +82,10 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
-                    mSharedPreferences = ChildLoginActivity.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+                    mSharedPreferences = ChildLoginActivity.this.getSharedPreferences(getString(com.example.ridowanahmed.childlocator.R.string.PREF_FILE), MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                    mEditor.putString(getString(R.string.CHILD_NAME), childName);
-                    mEditor.putString(getString(R.string.CHILD_GIVE_NUMBER), phoneNumber);
+                    mEditor.putString(getString(com.example.ridowanahmed.childlocator.R.string.CHILD_NAME), childName);
+                    mEditor.putString(getString(com.example.ridowanahmed.childlocator.R.string.CHILD_GIVE_NUMBER), phoneNumber);
                     mEditor.commit();
 
                     Toast.makeText(ChildLoginActivity.this, "Now you are logged in " + firebaseAuth.getCurrentUser().getProviderId(), Toast.LENGTH_SHORT).show();
@@ -132,10 +131,10 @@ public class ChildLoginActivity extends AppCompatActivity implements AdapterView
         childName = editText_child_name.getText().toString().trim();
         mobileNumber = editText_child_number.getText().toString();
         if(TextUtils.isEmpty(childName)) {
-            editText_child_name.setError(getString(R.string.name_error));
+            editText_child_name.setError(getString(com.example.ridowanahmed.childlocator.R.string.name_error));
             return;
         } else if (mobileNumber.length() != 11) {
-            editText_child_number.setError(getString(R.string.number_error));
+            editText_child_number.setError(getString(com.example.ridowanahmed.childlocator.R.string.number_error));
             return;
         }
         phoneNumber = countryCode + mobileNumber;

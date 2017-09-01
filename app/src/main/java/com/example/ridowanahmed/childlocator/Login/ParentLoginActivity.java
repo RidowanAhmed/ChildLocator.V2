@@ -2,10 +2,10 @@ package com.example.ridowanahmed.childlocator.Login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
-import com.example.ridowanahmed.childlocator.R;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -47,24 +47,24 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_login);
+        setContentView(com.example.ridowanahmed.childlocator.R.layout.activity_parent_login);
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
-        spinner_countryCode = (Spinner)findViewById(R.id.parent_countryCode);
+        spinner_countryCode = (Spinner)findViewById(com.example.ridowanahmed.childlocator.R.id.parent_countryCode);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
-                R.array.country, android.R.layout.simple_spinner_item);
+                com.example.ridowanahmed.childlocator.R.array.country, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_countryCode.setAdapter(adapter);
         spinner_countryCode.setOnItemSelectedListener(ParentLoginActivity.this);
 
-        editText_parent_number = (TextInputEditText) findViewById(R.id.editText_parent_number);
+        editText_parent_number = (TextInputEditText) findViewById(com.example.ridowanahmed.childlocator.R.id.editText_parent_number);
         editText_parent_number.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
-                    editText_parent_number.setHint(getString(R.string.mobile_number_hint));
+                    editText_parent_number.setHint(getString(com.example.ridowanahmed.childlocator.R.string.mobile_number_hint));
                 else
                     editText_parent_number.setHint("");
             }
@@ -75,9 +75,9 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
-                    mSharedPreferences = ParentLoginActivity.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
+                    mSharedPreferences = ParentLoginActivity.this.getSharedPreferences(getString(com.example.ridowanahmed.childlocator.R.string.PREF_FILE), MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = mSharedPreferences.edit();
-                    mEditor.putString(getString(R.string.PARENT_GIVE_NUMBER), phoneNumber);
+                    mEditor.putString(getString(com.example.ridowanahmed.childlocator.R.string.PARENT_GIVE_NUMBER), phoneNumber);
                     mEditor.commit();
 
                     Log.e(TAG, "mobile " + phoneNumber);
@@ -126,10 +126,10 @@ public class ParentLoginActivity extends AppCompatActivity implements AdapterVie
         String mobileNumber = editText_parent_number.getText().toString();
         Log.e(TAG, countryCode);
         if (mobileNumber.length() != 11) {
-            editText_parent_number.setError(getString(R.string.number_error));
+            editText_parent_number.setError(getString(com.example.ridowanahmed.childlocator.R.string.number_error));
             return;
         } else if(countryCode == null) {
-            editText_parent_number.setError(getString(R.string.spinner_error));
+            editText_parent_number.setError(getString(com.example.ridowanahmed.childlocator.R.string.spinner_error));
         }
         phoneNumber = countryCode + mobileNumber;
         Log.e(TAG, "Mobile " + phoneNumber);

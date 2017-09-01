@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
 import com.example.ridowanahmed.childlocator.Model.ChildInformation;
-import com.example.ridowanahmed.childlocator.R;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,14 +38,14 @@ public class ParentMap extends AppCompatActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.fragment_map);
+        setContentView(com.example.ridowanahmed.childlocator.R.layout.fragment_map);
 
 //        getSupportActionBar().setTitle("Child Location Activity");
-        mMapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mMapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(com.example.ridowanahmed.childlocator.R.id.map);
         mMapFrag.getMapAsync(this);
 
-        SharedPreferences mSharedPreferences = ParentMap.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
-        final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
+        SharedPreferences mSharedPreferences = ParentMap.this.getSharedPreferences(getString(com.example.ridowanahmed.childlocator.R.string.PREF_FILE), MODE_PRIVATE);
+        final String phoneNumber = mSharedPreferences.getString(getString(com.example.ridowanahmed.childlocator.R.string.PARENT_GIVE_NUMBER), "");
         final String childName = getIntent().getExtras().getString(ParentDashboard.CHILD_NAME);
         Log.e(TAG, childName + " " + phoneNumber);
         childData = FirebaseDatabase.getInstance().getReference(phoneNumber).child(childName);

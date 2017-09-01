@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ridowanahmed.childlocator.Model.ChildInformation;
-import com.example.ridowanahmed.childlocator.R;
+
 import java.util.ArrayList;
 
 
 /**
  * Created by Ridowan Ahmed on 0017, August, 17, 2017.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHolder> {
+public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyHolder> {
 
     Context mContext;
     ArrayList<ChildInformation> childList;
@@ -28,15 +28,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHold
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) LayoutInflater.from(mContext).getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.cardview_layout, null);
+        View view = inflater.inflate(com.example.ridowanahmed.childlocator.R.layout.cardview_layout, null);
         return new MyHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        
-        holder.card_childName.setText(childList.get(position).getChildName());
-        holder.card_childTime.setText("Last Updated: " + childList.get(position).getTimeString());
+        ChildInformation childInfo = childList.get(position);
+        holder.card_childName.setText(childInfo.getChildName());
+        holder.card_childTime.setText("Last Updated: " + childInfo.getTimeString());
+        holder.card_childAddress.setText("Last Located: " + childInfo.getAddressName());
     }
 
     @Override
@@ -44,14 +45,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyHold
         return childList.size();
     }
 
+
     public static class MyHolder extends RecyclerView.ViewHolder{
         
-        TextView card_childName, card_childTime;
+        TextView card_childName, card_childTime, card_childAddress;
 
         public MyHolder(View itemView) {
             super(itemView);
-            card_childName = (TextView) itemView.findViewById(R.id.card_childName);
-            card_childTime = (TextView) itemView.findViewById(R.id.card_childTime);
+            card_childName = itemView.findViewById(com.example.ridowanahmed.childlocator.R.id.card_childName);
+            card_childTime = itemView.findViewById(com.example.ridowanahmed.childlocator.R.id.card_childTime);
+            card_childAddress = itemView.findViewById(com.example.ridowanahmed.childlocator.R.id.card_childAddress);
         }
     }
+
+
 }

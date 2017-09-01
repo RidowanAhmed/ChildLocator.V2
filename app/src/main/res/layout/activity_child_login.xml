@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/child_login"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorText"
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:textStyle="bold|italic"
@@ -37,14 +37,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/child_name_hint"
-                android:textColorHint="#ffffff"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat">
+                android:textColorHint="@color/colorText"
+                app:hintTextAppearance="@style/FloatingLabel">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_child_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/colorText"
                     android:maxLength="25" />
             </android.support.design.widget.TextInputLayout>
             <LinearLayout
@@ -60,16 +60,16 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="#ffffff"
+                    android:textColorHint="@color/colorText"
                     android:hint="@string/child_login_hint"
-                    app:hintTextAppearance="@style/TextAppearance.AppCompat">
+                    app:hintTextAppearance="@style/FloatingLabel">
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/editText_child_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
                         android:maxLength="11"
-                        android:textColor="#ffffff"/>
+                        android:textColor="@color/colorText"/>
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -94,15 +94,15 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="#ffffff"
-                app:hintTextAppearance="@style/TextAppearance.AppCompat">
+                android:textColorHint="@color/colorText"
+                app:hintTextAppearance="@style/FloatingLabel">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/editText_child_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLength="6"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/colorText"
                     android:hint="@string/child_code_hint" />
             </android.support.design.widget.TextInputLayout>
 

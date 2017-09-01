@@ -14,8 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.ridowanahmed.childlocator.Map.ChildMap;
-import com.example.ridowanahmed.childlocator.R;
-import com.example.ridowanahmed.childlocator.Services.*;
+import com.example.ridowanahmed.childlocator.Services.MAP_Service;
 
 public class ChildDashboard extends AppCompatActivity {
     private static final int REQ_CODE = 1410649642 ;
@@ -27,15 +26,15 @@ public class ChildDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(com.example.ridowanahmed.childlocator.R.layout.activity_child_dashboard);
 
-        SharedPreferences mSharedPreferences = ChildDashboard.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
-        phoneNumber = mSharedPreferences.getString(getString(R.string.CHILD_GIVE_NUMBER), "");
+        SharedPreferences mSharedPreferences = ChildDashboard.this.getSharedPreferences(getString(com.example.ridowanahmed.childlocator.R.string.PREF_FILE), MODE_PRIVATE);
+        phoneNumber = mSharedPreferences.getString(getString(com.example.ridowanahmed.childlocator.R.string.CHILD_GIVE_NUMBER), "");
         Log.e(TAG, "Phone is " + phoneNumber);
 
         if(!runtime_permissions()) {
             enableService();
         }
 
-        button_showLocation = (Button) findViewById(R.id.button_showLocation);
+        button_showLocation = (Button) findViewById(com.example.ridowanahmed.childlocator.R.id.button_showLocation);
         button_showLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

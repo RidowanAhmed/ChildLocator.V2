@@ -4,18 +4,17 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import com.google.android.gms.location.LocationListener;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.example.ridowanahmed.childlocator.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -47,11 +46,11 @@ public class ChildMap extends AppCompatActivity implements OnMapReadyCallback, L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.fragment_map);
+        setContentView(com.example.ridowanahmed.childlocator.R.layout.fragment_map);
 
 //        getSupportActionBar().setTitle(getString(R.string.child_map_title));
 
-        mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(com.example.ridowanahmed.childlocator.R.id.map);
         mapFrag.getMapAsync(this);
     }
 

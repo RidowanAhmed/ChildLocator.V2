@@ -2,8 +2,8 @@ package com.example.ridowanahmed.childlocator.Dashboard;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.ridowanahmed.childlocator.Map.ParentMap;
 import com.example.ridowanahmed.childlocator.Map.ReverseGeoCoding;
 import com.example.ridowanahmed.childlocator.Model.ChildInformation;
-import com.example.ridowanahmed.childlocator.R;
 import com.example.ridowanahmed.childlocator.adapter.RecyclerAdapter;
 import com.example.ridowanahmed.childlocator.adapter.RecyclerItemClickListener;
 import com.google.firebase.database.DataSnapshot;
@@ -37,12 +36,12 @@ public class ParentDashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_dashboard);
-        recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
+        setContentView(com.example.ridowanahmed.childlocator.R.layout.activity_parent_dashboard);
+        recycler_view = (RecyclerView) findViewById(com.example.ridowanahmed.childlocator.R.id.recycler_view);
         layoutManager = new GridLayoutManager(ParentDashboard.this, 1);
 
-        mSharedPreferences = ParentDashboard.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
-        final String phoneNumber = mSharedPreferences.getString(getString(R.string.PARENT_GIVE_NUMBER), "");
+        mSharedPreferences = ParentDashboard.this.getSharedPreferences(getString(com.example.ridowanahmed.childlocator.R.string.PREF_FILE), MODE_PRIVATE);
+        final String phoneNumber = mSharedPreferences.getString(getString(com.example.ridowanahmed.childlocator.R.string.PARENT_GIVE_NUMBER), "");
         Log.e(TAG, "Mobile " + phoneNumber);
         childList = new ArrayList<>();
 

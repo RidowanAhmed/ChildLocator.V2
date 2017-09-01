@@ -19,8 +19,6 @@ import com.example.ridowanahmed.childlocator.Dashboard.ChildDashboard;
 import com.example.ridowanahmed.childlocator.Dashboard.ParentDashboard;
 import com.example.ridowanahmed.childlocator.Login.ChildLoginActivity;
 import com.example.ridowanahmed.childlocator.Login.ParentLoginActivity;
-import com.example.ridowanahmed.childlocator.Map.ChildMap;
-import com.example.ridowanahmed.childlocator.Map.ParentMap;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {

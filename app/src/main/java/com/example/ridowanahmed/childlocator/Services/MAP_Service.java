@@ -14,7 +14,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ridowanahmed.childlocator.Model.ChildInformation;
-import com.example.ridowanahmed.childlocator.R;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 //Location Callback
 public class MAP_Service extends Service implements ConnectionCallbacks, OnConnectionFailedListener {
     private static final String TAG = "MAP_Services";
-    private static final int LOCATION_INTERVAL = 2000;
+    private static final int LOCATION_INTERVAL = 10000;
     private static final float LOCATION_DISTANCE = 1f;
 
     private SharedPreferences mSharedPreferences;
@@ -48,9 +48,9 @@ public class MAP_Service extends Service implements ConnectionCallbacks, OnConne
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e(TAG, "onStartCommand");
-        mSharedPreferences = MAP_Service.this.getSharedPreferences(getString(R.string.PREF_FILE), MODE_PRIVATE);
-        childName = mSharedPreferences.getString(getString(R.string.CHILD_NAME), "");
-        phoneNumber = mSharedPreferences.getString(getString(R.string.CHILD_GIVE_NUMBER), "");
+        mSharedPreferences = MAP_Service.this.getSharedPreferences(getString(com.example.ridowanahmed.childlocator.R.string.PREF_FILE), MODE_PRIVATE);
+        childName = mSharedPreferences.getString(getString(com.example.ridowanahmed.childlocator.R.string.CHILD_NAME), "");
+        phoneNumber = mSharedPreferences.getString(getString(com.example.ridowanahmed.childlocator.R.string.CHILD_GIVE_NUMBER), "");
         databaseReference = FirebaseDatabase.getInstance().getReference(phoneNumber).child(childName);
 
         client = new GoogleApiClient.Builder(this)
